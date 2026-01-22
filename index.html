@@ -1,0 +1,1358 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Finds with Milly</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    .font-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .font-body {
+      font-family: 'Outfit', system-ui, sans-serif;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body">
+  <div id="app-wrapper" class="h-full w-full overflow-auto" style="background-color: #FAF8F5;"><!-- Navigation -->
+   <nav class="sticky top-0 z-50 border-b" style="background-color: #FAF8F5; border-color: #E8E4DE;">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+     <div class="flex items-center justify-between"><a href="#" class="font-heading text-2xl font-semibold tracking-tight" style="color: #2C2C2C;" onclick="navigateTo('home'); return false;"> Smart Finds with Milly </a>
+      <div class="hidden md:flex items-center gap-8"><a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('home'); return false;">Home</a> <a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('amazon'); return false;">Amazon Picks</a> <a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('home-finds'); return false;">Home Finds</a> <a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('shein'); return false;">SHEIN</a> <a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('baby'); return false;">Baby &amp; Mom</a> <a href="#" class="nav-link font-body text-sm font-medium transition-colors hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('about'); return false;">About</a>
+      </div><button class="md:hidden p-2" onclick="toggleMobileMenu()" style="color: #2C2C2C;">
+       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t mt-4" style="border-color: #E8E4DE;">
+      <div class="flex flex-col gap-3"><a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('home'); toggleMobileMenu(); return false;">Home</a> <a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('amazon'); toggleMobileMenu(); return false;">Amazon Picks</a> <a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('home-finds'); toggleMobileMenu(); return false;">Home Finds</a> <a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('shein'); toggleMobileMenu(); return false;">SHEIN Picks</a> <a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('baby'); toggleMobileMenu(); return false;">Baby &amp; Mom</a> <a href="#" class="font-body text-sm font-medium py-2" style="color: #5C5C5C;" onclick="navigateTo('about'); toggleMobileMenu(); return false;">About</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Home Page -->
+   <section id="page-home" class="page-section"><!-- Hero Section -->
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+     <h1 id="hero-title" class="font-heading text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6" style="color: #2C2C2C;">Smart Finds with Milly — Honest Reviews You Can Trust.</h1>
+     <p id="hero-tagline" class="font-body text-lg md:text-xl font-light mb-12" style="color: #6B6B6B;">I buy it. I test it. I tell you the truth.</p><!-- Category Buttons -->
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-center mb-16"><button onclick="navigateTo('amazon')" class="px-8 py-4 font-body text-sm font-medium tracking-wide uppercase transition-all hover:scale-105" style="background-color: #4A7C59; color: #FFFFFF;"> Amazon Picks </button> <button onclick="navigateTo('home-finds')" class="px-8 py-4 font-body text-sm font-medium tracking-wide uppercase border-2 transition-all hover:scale-105" style="background-color: transparent; color: #2C2C2C; border-color: #2C2C2C;"> Home Finds </button> <button onclick="navigateTo('shein')" class="px-8 py-4 font-body text-sm font-medium tracking-wide uppercase border-2 transition-all hover:scale-105" style="background-color: transparent; color: #2C2C2C; border-color: #2C2C2C;"> SHEIN Picks </button> <button onclick="navigateTo('baby')" class="px-8 py-4 font-body text-sm font-medium tracking-wide uppercase border-2 transition-all hover:scale-105" style="background-color: transparent; color: #2C2C2C; border-color: #2C2C2C;"> Baby &amp; Mom </button>
+     </div>
+    </div><!-- Featured Products Section -->
+    <div class="max-w-6xl mx-auto px-6 pb-20">
+     <h2 class="font-heading text-2xl md:text-3xl font-semibold text-center mb-12" style="color: #2C2C2C;">Featured Finds</h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"><!-- Featured Product 1 - Birthday --> <a href="https://amzn.to/4pV5KKu" target="_blank" rel="noopener noreferrer" class="group">
+       <div class="aspect-square mb-4 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71oCUteemmL._AC_SL1500_.jpg" alt="Birthday Picks" loading="lazy" class="w-full h-full object-contain p-6 transition-transform group-hover:scale-105" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div><p class="font-body text-xs uppercase tracking-wider mb-2" style="color: #9B9B9B;">Birthday</p><h3 class="font-heading text-lg font-medium" style="color: #2C2C2C;">Birthday Gift Ideas</h3></a> <!-- Featured Product 2 - Valentine --> <a href="https://amzn.to/4bK6WNc" target="_blank" rel="noopener noreferrer" class="group">
+       <div class="aspect-square mb-4 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61a8Y+4NtgL._AC_SL1001_.jpg" alt="Valentine Picks" loading="lazy" class="w-full h-full object-contain p-6 transition-transform group-hover:scale-105" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div><p class="font-body text-xs uppercase tracking-wider mb-2" style="color: #9B9B9B;">Valentine</p><h3 class="font-heading text-lg font-medium" style="color: #2C2C2C;">Valentine's Day Gifts</h3></a> <!-- Featured Product 3 - Electronics --> <a href="https://amzn.to/4qByrgG" target="_blank" rel="noopener noreferrer" class="group">
+       <div class="aspect-square mb-4 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71iT36L2WYL._AC_SL1500_.jpg" alt="Electronics" loading="lazy" class="w-full h-full object-contain p-6 transition-transform group-hover:scale-105" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div><p class="font-body text-xs uppercase tracking-wider mb-2" style="color: #9B9B9B;">Electronics</p><h3 class="font-heading text-lg font-medium" style="color: #2C2C2C;">Tech &amp; Electronics</h3></a> <!-- Featured Product 4 - Home Decor --> <a href="https://amzn.to/4pR2r76" target="_blank" rel="noopener noreferrer" class="group">
+       <div class="aspect-square mb-4 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71g5gC729RL._SL1500_.jpg" alt="Home Decor" loading="lazy" class="w-full h-full object-contain p-6 transition-transform group-hover:scale-105" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div><p class="font-body text-xs uppercase tracking-wider mb-2" style="color: #9B9B9B;">Home Decor</p><h3 class="font-heading text-lg font-medium" style="color: #2C2C2C;">Home Decor &amp; Finds</h3></a>
+     </div>
+    </div><!-- Newsletter Section -->
+    <div class="border-t border-b py-16" style="border-color: #E8E4DE; background-color: #F5F2ED;">
+     <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-semibold mb-4" style="color: #2C2C2C;">Join the Smart Shoppers</h2>
+      <p class="font-body text-base mb-8" style="color: #6B6B6B;">Get my latest finds and honest reviews delivered to your inbox.</p>
+      <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"><input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" required> <button type="submit" class="px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Subscribe </button>
+      </form>
+      <p id="newsletter-message" class="font-body text-sm mt-4 hidden" style="color: #6B6B6B;"></p>
+     </div>
+    </div>
+   </section><!-- Amazon Picks Page -->
+   <section id="page-amazon" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12"><!-- Page Header -->
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Amazon Picks</h1>
+      <p class="font-body text-base max-w-2xl mx-auto mb-4" style="color: #6B6B6B;">My honest reviews of Amazon products available in Canada. Every item tested and rated.</p>
+      <div class="max-w-2xl mx-auto mt-6 p-4 border" style="background-color: #F5F2ED; border-color: #E8E4DE;">
+       <p class="font-body text-xs leading-relaxed" style="color: #6B6B6B;">💡 <strong>Transparency Note:</strong> These are my honest opinions on products I purchased myself. You can view my <a href="https://amzn.to/4pMU7Fr" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-70" style="color: #4A7C59;">complete Amazon purchase history here</a>.</p>
+      </div>
+     </div><!-- Products Grid -->
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61UQcBGi4fL._AC_SL1500_.jpg" alt="Eucerin Creme Original Healing 16 Ounce Jar" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Eucerin Creme Original Healing 16 Ounce Jar (473ml)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This rich, fragrance-free cream is a holy grail for dry Canadian winters. I've been using it for months and it's incredibly effective for healing dry, cracked skin without feeling greasy. A little goes a long way with this jar.</p><!-- Pros & Cons -->
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Deeply moisturizing</li>
+          <li>• Fragrance-free</li>
+          <li>• Great value size</li>
+          <li>• Non-greasy finish</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Thick consistency</li>
+          <li>• Jar not travel-friendly</li>
+         </ul>
+        </div>
+       </div><a href="https://amzn.to/4jS6Jtv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Product 2 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71Odri8NXqL._AC_SL1500_.jpg" alt="YISSVIC Bug Zapper Racket 4000 Volt Electric Fly Swatter" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">YISSVIC Bug Zapper Racket 4000 Volt Electric Fly Swatter</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.0/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This is a summer essential! The dual modes with attractant light work perfectly for indoor and outdoor use. Rechargeable and powerful - it actually works on the first swing. No more chasing flies around the house.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>    Powerful 4000V zap</li>
+          <li>• Built-in attractant light</li>
+          <li>• Rechargeable battery</li>
+          <li>• Indoor/outdoor modes</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Slightly heavy</li>
+          <li>• Loud zap sound</li>
+         </ul>
+        </div>
+       </div><a href="https://amzn.to/3Lr1jJh" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Product 3 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71xDN5fU-RL._AC_SL1500_.jpg" alt="Dual Layer Memory Foam Mattress Topper" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">AprLeaf 3 Inch Dual Layer Memory Foam Mattress Topper (Queen)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">I was skeptical about mattress toppers making a real difference, but this one genuinely transformed my sleep quality. The dual-layer design is brilliant         you get 2 inches of cooling gel memory foam that actually stays cool throughout the night, topped with a soft 1-inch pillow-top layer that feels like sleeping on a cloud. My back pain has significantly decreased since I started using this.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The medium support is perfect for side sleepers like me. It cradles your hips and shoulders without making you feel like you're sinking into quicksand. The cooling gel really works – I used to wake up hot in the middle of the night, but not anymore. Setup was easy, and it fits my queen mattress perfectly without sliding around.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The only downside is the initial off-gassing smell, which took about 2-3 days to completely disappear. Also, it adds quite a bit of height to your bed, so you might need deeper fitted sheets. But honestly, for the price and the quality of sleep I'm getting, these are minor inconveniences. If you're on the fence about upgrading your mattress, try this topper first – it's a fraction of the cost and might be all you need.</p>
+       </div><a href="https://amzn.to/45qmzW9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Product 4 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61yAFzMN5JL._AC_SL1500_.jpg" alt="DHSO Maternity Leggings" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">DHSO Maternity Leggings Over The Belly Pregnancy Yoga Tights</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">These are hands-down the most comfortable maternity leggings I've tried during my pregnancy. The "buttery soft" description is not an exaggeration – the fabric is incredibly smooth and stretchy without being see-through. I'm in my third trimester and these still fit perfectly with plenty of room to grow. The over-the-belly design provides gentle support without any uncomfortable pressure.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">I wear these for everything: prenatal yoga, running errands, lounging at home, and even under dresses. They wash well and haven't pilled or lost their shape after dozens of washes. The high waist stays put and doesn't roll down, which is a huge pet peeve of mine with other maternity pants. The length is perfect for my 5'6" frame, hitting right at the ankle.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">My only minor complaint is that the black color shows lint easily, so keep a lint roller handy. Also, they run slightly small, so if you're between sizes, I'd size up. But honestly, at this price point, I bought three pairs in different colors and they've become my pregnancy uniform. These are a must-have for any expecting mom who wants to stay comfortable and stylish.</p>
+       </div><a href="https://amzn.to/4pPo4o4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Product 5 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61-6-ZPijEL._AC_SL1500_.jpg" alt="HAYLOU S30 Pro Noise Cancelling Headphones" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">HAYLOU S30 Pro Noise Cancelling Headphones Bluetooth Wireless</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">These wireless headphones are absolutely incredible for the price! The LDAC Hi-Res audio quality is stunning – I can hear details in my music I never noticed before. The active noise cancellation works surprisingly well for blocking out background noise during my commute and when I'm working from home. The 5 HD microphones make phone calls crystal clear, and people on the other end say I sound great even in noisy environments.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The battery life is insane – 80 hours of playtime means I only need to charge these once every couple of weeks! The Bluetooth 5.4 connection is rock solid, and the multipoint connect feature lets me seamlessly switch between my laptop and phone. The custom EQ via the app is fantastic for fine-tuning the sound to your preference. The over-ear design is comfortable for long listening sessions, with soft cushions that don't make my ears hot.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The build quality feels premium and durable. They fold up nicely for travel and come with a protective case. The touch controls are intuitive once you get used to them. For anyone looking for high-quality wireless headphones without breaking the bank, these are an absolute steal. The sound quality rivals headphones that cost twice as much. Highly recommend for music lovers, remote workers, or anyone who wants to tune out the world!</p>
+       </div><a href="https://amzn.to/3NuOjmu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- Home Finds Page -->
+   <section id="page-home-finds" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Home Finds</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Affordable home decor and organization finds that actually work. SHEIN hauls and more.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Home Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71QYn+FKahL._AC_SL1500_.jpg" alt="Hamilton Beach Glass Electric Tea Kettle" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Hamilton Beach Glass Electric Tea Kettle, Water Boiler &amp; Heater, 1 L</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.0/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This compact 1-liter kettle is perfect for small spaces! The glass design lets you watch the water boil, and the blue LED indicator adds a nice touch. It heats water incredibly fast - about 5 minutes for a full liter. The cordless design makes pouring easy, and the auto-shutoff with boil-dry protection gives me peace of mind. The 40930C model is reliable and affordable - I use it multiple times daily for tea, coffee, and instant meals. The only downside is the 1L capacity might be small for families, but it's ideal for 1-2 people.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Boils water very fast</li>
+          <li>• Cordless convenience</li>
+          <li>• LED indicator light</li>
+          <li>• Auto-shutoff safety</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Small 1L capacity</li>
+          <li>• Glass shows mineral buildup</li>
+         </ul>
+        </div>
+       </div><a href="https://amazon.ca" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Home Product 2 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/91Lr056h7VL._AC_SL1500_.jpg" alt="AquaCare High Pressure Handheld Shower Head" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">AquaCare High Pressure 8-Mode Handheld Shower Head</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This shower head completely transformed my shower experience! The water pressure is phenomenal - even with my older plumbing, it feels like a spa shower. The 8 different modes give you great variety, from a gentle rain to a powerful massage jet. The 6-foot stainless steel hose is a game-changer for flexibility - perfect for washing the dog, cleaning the tub, or rinsing hard-to-reach areas. The anti-clog nozzles really work, and installation was straightforward. The power wash mode is surprisingly effective for cleaning. It comes with both wall and overhead brackets, so you have mounting options. For the price, this is an incredible upgrade!</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Excellent water pressure</li>
+          <li>• 8 versatile spray modes</li>
+          <li>• Extra long 6 ft hose</li>
+          <li>• Easy installation</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Hose can kink sometimes</li>
+          <li>• Dial a bit stiff initially</li>
+         </ul>
+        </div>
+       </div><a href="https://amazon.ca" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Home Product 3 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71hAU9nAEEL._AC_SL1500_.jpg" alt="GE LED Night Light with Dusk to Dawn Sensor" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">GE LED Night Light, Dusk to Dawn Sensor, 2 Pack (30966)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">These simple night lights are exactly what I needed! The dusk to dawn sensor works perfectly - they automatically turn on when it gets dark and off when it's light, so I never have to think about them. The warm white light is gentle and not too bright, perfect for hallways and bathrooms at night. They're incredibly energy efficient and UL-certified for safety. I've had mine plugged in for months and they're still going strong. The 2-pack is great value. They're compact and don't block the second outlet. No frills, just reliable automatic lighting that works every single night.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Auto dusk to dawn</li>
+          <li>• Energy efficient LED</li>
+          <li>          Perfect light level</li>
+          <li>• Great value 2-pack</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• No brightness adjustment</li>
+          <li>• Basic design</li>
+         </ul>
+        </div>
+       </div><a href="https://amazon.ca" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- SHEIN Picks Page -->
+   <section id="page-shein" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">SHEIN Picks</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Affordable fashion and accessories that actually deliver. My honest SHEIN haul reviews.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- SHEIN Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/P2aFEsm.png" alt="Fashionable 14-Inch Straight Hair Synthetic Wig" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Fashionable 14-Inch Straight Hair With Medium Parting Synthetic Wig</h2>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This natural-looking synthetic wig is perfect for everyday wear, parties, or cosplay! The 14-inch length with medium parting looks incredibly realistic and flattering. The heat-resistant synthetic fibers mean you can style it with heat tools (up to 120°C), which is a game-changer for affordable wigs. The texture is smooth and straight with a natural shine that doesn't look plastic. It's lightweight and comfortable to wear all day, and the adjustable straps inside ensure a secure fit. For the price point, this is an excellent quality wig that rivals more expensive options.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Natural-looking texture</li>
+          <li>• Heat resistant styling</li>
+          <li>         Comfortable fit</li>
+          <li>• Great value for money</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• May tangle with wear</li>
+          <li>• Needs gentle washing</li>
+         </ul>
+        </div>
+       </div><a href="https://onelink.shein.com/27/5e03bwofpwlk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- SHEIN Product 2 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/mXQsyuS.png" alt="Rimless Metal Frame Handmade Cut Rhinestone Fashion Eyeglasses" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Rimless Metal Frame Handmade Cut Rhinestone Fashion Eyeglasses</h2>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">These sunglasses are absolutely STUNNING! The handmade cut rhinestone detailing is so much more beautiful in person than in the photos. They catch the light gorgeously and make such a statement – I get compliments every single time I wear them! I was worried they might look cheap or tacky, but they actually look really elegant and high-end. The rimless design gives them a modern, sophisticated vibe that works with so many different outfits.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The lightweight metal frame is comfortable to wear for hours – I wore these all day at a beach vacation and they didn't give me a headache or leave marks on my nose like some sunglasses do. They're incredibly versatile! I've worn them to outdoor summer events, pool parties, even dressed them up for evening dinners. They work for Halloween costume parties, back-to-school preppy looks, or just adding some glamour to a casual outfit. The quality is surprisingly solid for the price point.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">A few things to be careful about: the rhinestones are delicate and can catch on things if you're not mindful, so I'm careful when putting them in and taking them out of my bag. Also, because they're so decorative, you need to handle them more gently than regular sunglasses – they're not the kind you want to just toss in your beach bag. But if you treat them with care, they're absolutely gorgeous and such a fun accessory. Perfect for anyone who loves statement pieces!</p>
+       </div><a href="https://onelink.shein.com/27/5e07vafkgrq3" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- SHEIN Product 3 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/gRZNLVB.png" alt="Abstract Flame Sculpture Resin Statue" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Abstract Flame Sculpture - Modern Resin Art Statue</h2>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This sculpture is hands down one of my favorite home decor pieces I've ever bought! When it arrived, I was genuinely shocked by how high-quality it looks and feels – it looks WAY more expensive than it actually is. The abstract flame design is so elegant and artistic, and it instantly elevates whatever space you put it in. I have mine on my dining room table as a centerpiece, and every single person who visits comments on it and asks where I got it!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The resin construction has a nice weight to it, so it feels substantial and luxurious, not cheap or flimsy. The smooth finish is beautiful and the flowing lines capture movement in such an interesting way. What I love is how versatile it is – it works perfectly with my contemporary decor, but I could see it fitting into minimalist, modern, or even transitional styles. The size is ideal for tabletops without overwhelming the space. It's become a real conversation starter!</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">A couple warnings: because it's resin, it is somewhat fragile, so you need to be careful when handling and cleaning it. It's not something you want kids or pets knocking around. Also, the abstract modern style definitely won't work if you have a very traditional or rustic decor aesthetic – it's pretty distinctly contemporary. But if you're looking for an affordable way to add some artistic sophistication to your space, this sculpture is absolutely perfect. Such a chic find!</p>
+       </div><a href="https://onelink.shein.com/27/5e08fckvoupc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- SHEIN Product 4 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/UvhJoDr.png" alt="Cat Eye Blue Light Blocking Glasses" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Cat Eye Clear Glasses - Blue Light Blocking for Reading, Gaming &amp; Screens</h2>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">These blue light blocking glasses have been a total game-changer for my daily screen time! I work from home and spend literally 8-10 hours a day staring at my computer, and by the end of the day, my eyes used to be SO tired and strained. Since I started wearing these, the difference is noticeable – my eyes feel way less fatigued, and I don't get those headaches anymore that I used to get in the late afternoon. The best part? The lenses are completely clear without that annoying yellow tint that a lot of blue light glasses have!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The cat eye frame style is super cute and trendy! I honestly wear these as much for fashion as I do for the blue light protection. They make me look a bit more put-together during video calls, and I've gotten compliments from coworkers. The frames are lightweight and comfortable – no pressure on my nose or behind my ears even after wearing them all day. They work great for reading on my phone or tablet too, and my partner uses them for gaming in the evenings.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">A couple minor issues: the frames feel a little loose on my face, so if you have a smaller head, they might slip down your nose a bit. Also, the lenses do show fingerprints and smudges pretty easily, so I'm constantly cleaning them. But for the price, these are fantastic! They actually work, they look good, and they're comfortable. Perfect for anyone who spends a lot of time looking at screens. I'm thinking about getting a second pair as a backup!</p>
+       </div><a href="https://onelink.shein.com/27/5e08hdl0u6fu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- SHEIN Product 5 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/NEJxrGt.png" alt="Women's Anti-Peeping Lace Collar Inset Accessory" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Women's Anti-Peeping Lace Collar Inset - Black &amp; White Dress Accessory</h2>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This lace collar inset is such a genius solution! I have so many beautiful dresses and tops that I love but are just a bit too low-cut for work or certain occasions. This collar insert completely solves that problem without looking awkward or like I'm trying to cover something up. The black and white lace design is elegant and looks intentional     like it's actually part of the outfit rather than an add-on. It's become such a versatile wardrobe staple for me!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">I've used this for so many different situations – making summer dresses work-appropriate, adding coverage to formal dresses for holiday parties and family events, and even just for my own comfort when I want to wear something cute but don't want to worry about it all day. The lace quality is surprisingly nice for the price; it's not scratchy or flimsy. It stays in place really well throughout the day without constantly needing adjustment, which was a concern I had before buying it. The design provides coverage exactly where you need it while still looking stylish and sophisticated.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The only thing to know is that you might need to adjust and position it a few times when you first wear it to figure out the best placement for your specific outfit. Also, I'd recommend hand washing it to keep the lace looking nice. But honestly, this has extended the wearability of so many pieces in my wardrobe! It's perfect for upcoming Christmas parties, office events, or any time you want to make a gorgeous dress more modest without losing the style factor. Totally worth it!</p>
+       </div><a href="https://onelink.shein.com/27/5e08ncne5kcu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- SHEIN Product 6 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://i.imgur.com/QD1TnwN.png" alt="Personalized Vacation Tumbler Custom Insulated Name Tumbler" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Personalized Vacation Tumbler - Custom Insulated Stainless Steel with Birth Flower</h2>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">I ordered these personalized tumblers as bridesmaid proposal gifts and they were an absolute HIT! The laser engraving is beautiful – so much better than I expected. It's crisp, detailed, and permanent, which means it won't fade or peel off like those vinyl decals you see on cheaper tumblers. Each tumbler was customized with my bridesmaids' names and their birth flowers, which made them feel really special and thoughtful. The girls were honestly so touched and have been using them constantly!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The quality of the tumbler itself is excellent! The stainless steel keeps my drinks ice cold for literally hours – I've had ice still in my tumbler after 6+ hours, which is impressive. It works great for hot drinks too. The size is perfect for everyday use, and it comes with a convenient reusable straw. I loved these so much as gifts that I ended up ordering one for myself! I use mine daily for the office, at the gym, on vacation, and just around the house. It's become my go-to water bottle.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The customization does take a bit longer to ship than regular items since each one is made to order, so plan ahead if you're ordering for a specific date or event. Also, hand washing is recommended to keep the engraving looking perfect – I wouldn't risk the dishwasher. But honestly, for how meaningful and practical these are as gifts, these minor inconveniences are totally worth it. Perfect for bridesmaids, bachelorette parties, birthdays, Christmas, or just treating yourself!</p>
+       </div><a href="https://onelink.shein.com/27/5e0i0f3gtlya" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop on SHEIN 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div><!-- Special Offer Banner -->
+     <div class="mt-16 mb-8 p-8 text-center border-2" style="background-color: #F5F2ED; border-color: #4A7C59;">
+      <div class="max-w-2xl mx-auto">
+       <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">    HOT DEAL ALERT</p>
+       <h3 class="font-heading text-2xl md:text-3xl font-semibold mb-3" style="color: #2C2C2C;">Don't Miss This SHEIN Deal!</h3>
+       <p class="font-body text-lg font-medium mb-2" style="color: #4A7C59;">💰 60% OFF coupon for new users only</p>
+       <p class="font-body text-base mb-4" style="color: #6B6B6B;">🌟 Search <strong>23W7673</strong> on the SHEIN App</p><a href="https://onelink.shein.com/27/5e0i0f3gtlya" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Claim Your 60% OFF Now 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Baby & Mom Page -->
+   <section id="page-baby" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Baby &amp; Mom</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Products that make parenting a little easier. Tested by a real Canadian mom.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Baby Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71pbw0W5wuL._AC_SL1500_.jpg" alt="Chicco Bravo 3-in-1 Trio Travel System" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Chicco Bravo 3-in-1 Trio Travel System</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This travel system has been a lifesaver! The quick-fold stroller is so easy to use, and the KeyFit 30 car seat clicks in seamlessly. It grows with your baby from infant to toddler. Worth every penny for the convenience.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• 3-in-1 versatility</li>
+          <li>• Quick-fold feature</li>
+          <li>• High-rated car seat</li>
+          <li>    Grows with baby</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Bulky when folded</li>
+          <li>• Higher price point</li>
+         </ul>
+        </div>
+       </div><a href="https://amzn.to/3YQD2PO" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 2 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71W3X2eMHcL._AC_SL1500_.jpg" alt="Ivory Snow Unscented Baby Liquid Laundry Detergent" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Ivory Snow Unscented Baby Liquid Laundry Detergent (80 loads)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This gentle, hypoallergenic detergent is perfect for baby's sensitive skin. Unscented and effective - it gets out all those baby stains without harsh chemicals. The 3.1L bottle lasts forever with 80 loads.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Hypoallergenic formula</li>
+          <li>• Unscented</li>
+          <li>• Great value (80 loads)</li>
+          <li>• Trusted brand</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Large bottle storage</li>
+          <li>    Pricier than regular</li>
+         </ul>
+        </div>
+       </div><a href="https://amzn.to/49P3XQW" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 3 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71MttgJzadL._AC_SX679_.jpg" alt="BQKOZFIN Diaper Bag Backpack" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">BQKOZFIN Diaper Bag Backpack</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">This multi-function travel backpack is a game-changer! So many pockets for organization, insulated pockets for bottles, and it's comfortable to wear all day. Stylish enough that it doesn't scream "diaper bag" either.</p>
+       <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #4A7C59;">Pros</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Multiple compartments</li>
+          <li>• Insulated pockets</li>
+          <li>• Comfortable straps</li>
+          <li>• Stylish design</li>
+         </ul>
+        </div>
+        <div class="p-4" style="background-color: #F5F2ED;">
+         <p class="font-body text-xs uppercase tracking-wider font-medium mb-2" style="color: #9B5D5D;">Cons</p>
+         <ul class="font-body text-sm space-y-1" style="color: #5C5C5C;">
+          <li>• Can be bulky when full</li>
+          <li>• Zippers feel light</li>
+         </ul>
+        </div>
+       </div><a href="https://amzn.to/4qDRuqA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 4 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61H+wUJbxOL._AC_SL1500_.jpg" alt="GRSSDER Nursing Pillow Cover Stretchy Minky" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">GRSSDER Nursing Pillow Cover Stretchy Minky Removable Nursing Covers, Stylish Pretty Dinosaur</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This stretchy minky nursing pillow cover is absolutely adorable with its stylish dinosaur pattern! The ultra-soft fabric feels luxurious against your skin and baby's delicate face during feeding sessions. What I love most is how stretchy it is – it fits my Boppy pillow perfectly and goes on and off easily, which is essential when you need to wash it frequently (and trust me, you will!).</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The minky material is incredibly soft and plush, providing extra comfort during those long nursing sessions. The cute dinosaur print is gender-neutral and adds a fun, playful touch to the nursery. The cover is machine washable and has held up beautifully through countless washes without fading, shrinking, or losing its softness. The zipper closure is well-made and hidden, so it doesn't scratch or irritate.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The removable design makes it so easy to keep your nursing pillow fresh and clean – I actually bought two so I always have a backup while one is in the wash. The only minor downside is that minky fabric does attract lint and pet hair, but a quick lint roller fixes that. For the price and quality, this is a fantastic nursing pillow cover that makes feeding time cozier for both you and baby!</p>
+       </div><a href="https://amzn.to/49P3XQW" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 5 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71FaNPQl3TL._AC_SL1500_.jpg" alt="CREVENT Minky Baby Blanket" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">CREVENT Minky Baby Blanket, Soft Plush Receiving Blanket - 30x40 Inches</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This minky blanket is unbelievably soft – seriously, it's the softest baby blanket I've ever felt! The plush texture is luxurious and gentle on my baby's delicate skin. At 30x40 inches, it's the perfect size for a receiving blanket – large enough to swaddle, use as a stroller cover, or lay on the floor for tummy time, but not so big that it's overwhelming or difficult to manage.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The animal print is adorable and gender-neutral, making it a great gift option. The quality is impressive for the price – it's held up beautifully through countless washes without pilling, fading, or losing its softness. My baby absolutely loves this blanket and reaches for it at naptime. The weight is perfect – substantial enough to provide comfort and security, but lightweight enough for safe use with an infant.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">One thing to note is that minky fabric does attract lint and pet hair, so you'll want to keep it away from fuzzy surfaces. Also, it takes a bit longer to dry than regular cotton blankets. But honestly, the incredible softness and quality make these minor inconveniences totally worth it. I've actually bought several more as gifts for other new parents, and every single person has raved about how soft it is!</p>
+       </div><a href="https://amzn.to/4qy9ToA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 6 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61Hml2Zb5OL._AC_SL1500_.jpg" alt="BABY JOY Baby Bathtub with Changing Table" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">BABY JOY Baby Bathtub with Changing Table, Foldable Bath Station</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.5/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This bathtub station is a real space-saver and back-saver! Having the tub at waist height means no more bending over the regular tub and killing my back during bath time. The built-in changing table is super convenient – you can go straight from bath to getting baby dressed without moving to another room. The storage shelves are a nice touch for keeping all the bath essentials within arm's reach.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">Now here's the honest part – the drainage pipe is painfully slow. Like, seriously slow. It takes forever to drain the water, and I usually end up scooping most of it out with a cup just to speed things up. Also, if you have a playful, splashy baby like mine, be prepared for water EVERYWHERE. The sides aren't high enough to contain an enthusiastic bath-time splasher, so I've learned to keep extra towels on the floor. My bathroom looks like a splash zone after every bath!</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">Despite these issues, it's still worth it for the convenience factor. It folds up when not in use, which is great for small spaces. The tub itself is a decent size and my baby seems comfortable in it. Just know what you're getting into with the drainage situation and the splashing. If your baby is calm during baths, this might work better for you than it does for me!</p>
+       </div><a href="https://amzn.to/4bI4AOL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 7 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/81SjL1vDbTL._AC_SL1500_.jpg" alt="Baby Bassinet Bedside Sleeper" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Baby Bassinet Bedside Sleeper with Storage Basket</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">3.5/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This bedside bassinet has been pretty decent for those first few months of nighttime feedings. I love that it's right next to my bed so I can easily reach over and check on baby without getting up. The mesh sides give great visibility, and the storage basket underneath is actually useful for keeping diapers, wipes, and burp cloths handy during those 3am changes.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">Here's something I noticed though – there's this metal bar or frame piece right where baby's legs rest at the bottom. I've caught my little one's foot against it a few times, and it just seems like an odd design choice. I ended up putting a rolled-up receiving blanket down there as extra padding because it worried me. It's not a dealbreaker, but definitely something to be aware of. Make sure baby is positioned higher up in the bassinet to avoid this issue.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The height is adjustable which is nice for matching it to your bed level, and it's been sturdy enough. The breathable mesh is great for peace of mind. Overall it does the job for bedside sleeping, just watch that metal frame situation at the foot end. Once I figured out the positioning, it's been working fine for us!</p>
+       </div><a href="https://amzn.to/45T8Ebi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 8 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/618Zvkt3BbL._AC_SL1500_.jpg" alt="Boifun Baby Monitor with 4 inch 720P IPS Screen" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Boifun Baby Monitor with 4" 720P IPS Screen - No Wi-Fi Needed</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This baby monitor is an absolute MUST-HAVE! I cannot stress enough how perfect this thing is. The 720P picture quality is crystal clear – I can see every little detail of my baby's face even in the dark thanks to the excellent night vision. The 4-inch screen is the perfect size, not too small like some monitors I've seen. You can actually see what's going on without squinting!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">What I love most is that it doesn't need Wi-Fi. No app to download, no connection issues, no worrying about security breaches or someone hacking into your baby's room (which honestly terrified me about Wi-Fi monitors). You just turn it on and it works instantly. The connection is rock solid – I've never experienced any dropouts or interference.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The two-way talk feature is super clear, the temperature sensor is accurate, and the VOX mode (sound-activated) saves so much battery life. I can literally walk around my entire house and even go outside to the backyard without losing signal. The battery lasts all night on the parent unit. This monitor gives me such peace of mind – I can check on baby anytime without disturbing them. If you're on the fence about which monitor to get, just get this one. You won't regret it!</p>
+       </div><a href="https://amzn.to/49xlJJL" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 9 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/619jPxGVFyL._AC_SL1500_.jpg" alt="SASTTIE Pregnancy Pillow for Sleeping" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">SASTTIE Pregnancy Pillow for Sleeping - 57" U Shaped Full Body Pillow</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This U-shaped pregnancy pillow has been a total game-changer for my sleep quality! As someone in their third trimester dealing with back pain, hip discomfort, and just trying to find ANY comfortable position, this pillow has genuinely saved my nights. The 57-inch full body support wraps around you perfectly, supporting your back, belly, hips, and legs all at once. I finally feel like I can actually relax and get some proper rest!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The removable velvet cover is SO soft and luxurious – it feels amazing against your skin. The grey color is neutral and looks nice on the bed. The cover is machine washable which is essential because, let's be honest, pregnancy comes with lots of spills and accidents. The pillow itself is well-stuffed and maintains its shape throughout the night without going flat. The U-shape design is perfect for side sleeping, which is basically the only position comfortable during pregnancy.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The only downside is that this pillow is HUGE. Like, it takes up a significant portion of the bed, which can be challenging if you're sharing with a partner (sorry hubby!). It's also quite heavy to move around if you need to get up frequently for those inevitable bathroom trips. But honestly, the comfort and support it provides completely outweigh these minor inconveniences. If you're pregnant and struggling to sleep, this is absolutely a must-have!</p>
+       </div><a href="https://amzn.to/3ZnazRI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 10 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71WqSlWVRcL._AC_SL1500_.jpg" alt="Philips Avent Natural Baby Bottles" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Philips Avent Natural Baby Bottles with Natural Response Nipples (9oz, 3-pack)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#D4D0CA" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">2.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">I really wanted to love these Philips Avent bottles because they're so highly rated and recommended everywhere. The Natural Response nipple design sounds great in theory – it's supposed to release milk only when baby actively drinks. The bottles themselves are well-made, easy to clean, and the wide neck design makes filling them simple. The anti-colic valve system is a nice feature too.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">However, here's the big problem I encountered: the nipple opening was way too restrictive for my baby. My little one was working SO hard to get milk out, getting frustrated, and barely getting any flow. I could see the struggle on their face during every feeding – it was honestly heartbreaking to watch. Baby would tire out before finishing a bottle and then be hungry again shortly after because they didn't get enough the first time.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">I tried different flow levels (this is Flow 3, medium flow), but even the faster flows seemed restrictive compared to other bottle brands. Eventually, I had to switch to a different bottle system entirely, and feeding immediately became easier for both of us. These bottles might work great for some babies, but they definitely didn't work for mine. If your baby struggles with these, don't feel bad about switching – sometimes you just need to find what works for YOUR baby, regardless of reviews or recommendations!</p>
+       </div><a href="https://amzn.to/4qup3v3" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 11 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61N7uvUwnAL._AC_SL1500_.jpg" alt="HAUTURE Bottle Sterilizer and Dryer" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">HAUTURE Bottle Sterilizer and Dryer | Electric Steam Sterilizer</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.6/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This bottle sterilizer seemed like a great idea in theory – steam sterilization plus a built-in dryer all in one compact unit. It does work for sterilizing bottles, pacifiers, and breast pump accessories, and the drying function is faster than some other models I researched. The size is decent and doesn't take up too much counter space, which was important for our small kitchen.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">However, here's the dealbreaker for me: this thing is SO hard to clean! The interior design has lots of crevices and hard-to-reach spots where water accumulates and mineral buildup forms. Getting into all those nooks and crannies to properly clean it became such a hassle. I found myself spending way more time trying to maintain the sterilizer itself than I expected. The water reservoir is particularly annoying to clean thoroughly.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">After a few weeks of struggling with cleaning it, I honestly just stopped using it. I switched back to the old-fashioned method of boiling bottles in a pot or using sterilizing tablets, which felt less time-consuming than dealing with this appliance. If they redesigned it with easier cleaning in mind, it would be a solid product. But as it is, the maintenance hassle just isn't worth it for me. If you're someone who doesn't mind intricate cleaning tasks, it might work for you, but it wasn't practical for my lifestyle!</p>
+       </div><a href="https://amzn.to/4bI9Yl0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 12 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71hb4vlkN7L._AC_SL1500_.jpg" alt="Fisher-Price Baby Grooming &amp; Healthcare Kit" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Smart Care Fisher-Price Baby Grooming &amp; Healthcare Kit</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">4.6/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This grooming kit is a lifesaver for new parents! It comes with everything you need to keep baby healthy and well-groomed – nail clippers, nail file, nasal aspirator, medicine dropper, thermometer, brush, comb, and more. Having all these essentials organized in one convenient carrying case is perfect for home use and travel. I keep one at home and bought a second for the diaper bag!</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The quality of each tool is really good. The nail clippers are sharp and precise (those tiny baby nails are tricky!), the nasal aspirator works well for stuffy noses, and the digital thermometer gives quick, accurate readings. The soft brush is gentle on baby's delicate scalp. Everything is thoughtfully designed with safety in mind – no sharp edges or small parts that could be hazardous.</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The compact case keeps everything organized and easy to find when you need it. The only minor issue is that some of the smaller items like the nail file can get lost in the case pockets. But overall, this is an essential kit that every new parent needs. It makes a fantastic baby shower gift too! For the price, you get excellent value with trusted Fisher-Price quality.</p>
+       </div><a href="https://amzn.to/3NpdMOh" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 13 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61wL3DnYVlL._AC_SL1500_.jpg" alt="MAM Start Pacifiers Value Pack" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">MAM Start Pacifiers Value Pack - Best for Breastfed Babies (2 pack + Sterilizing Case)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">These MAM pacifiers are absolutely perfect for breastfed babies! I was so worried about nipple confusion when introducing a pacifier, but the orthodontic design is specifically made to support breastfeeding. The soft, textured nipple mimics the natural feel of breastfeeding, and my baby took to these immediately without any issues switching back and forth between breast and pacifier.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">The curved shield fits baby's face perfectly and allows for easy breathing – there's plenty of airflow and it doesn't press against their nose. The skin-friendly material is BPA-free and has been accepted by 94% of babies according to MAM (and I totally believe it!). The lightweight design means it doesn't fall out of baby's mouth as easily as heavier pacifiers. The unique shape and colors make them easy to spot when they inevitably get dropped!</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The sterilizing case is brilliant! You just add water, pop it in the microwave for 3 minutes, and the pacifiers are sterilized. So convenient, especially when traveling or on-the-go. The case doubles as a carrying case to keep pacifiers clean in your diaper bag. Getting two pacifiers plus the sterilizing case in one pack is great value. These are hands-down the best pacifiers we've tried – I've recommended them to all my mom friends!</p>
+       </div><a href="https://amzn.to/49J4oMF" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article><!-- Baby Product 14 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/613RE2JeekL._AC_SL1318_.jpg" alt="Glymnis Exercise Ball Yoga Ball" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Glymnis Exercise Ball Yoga Ball - Anti-Burst for Pregnancy, Birthing &amp; Fitness (55cm/65cm/75cm)</h2><!-- Star Rating -->
+       <div class="flex items-center gap-2 mb-4">
+        <div class="flex gap-1">
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+         <svg class="w-5 h-5" fill="#FFB800" viewbox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+         </svg>
+        </div><span class="font-body text-sm font-medium" style="color: #2C2C2C;">5.0/5.0</span>
+       </div>
+       <div class="mb-6">
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">This exercise ball has been an absolute game-changer throughout my pregnancy and beyond! I bought it in my second trimester to help with back pain and pelvic discomfort, and it provided such relief. Sitting and gently bouncing on the ball helped ease lower back pain and hip tension. I used it daily for prenatal exercises, stretching, and just as my go-to sitting option when the couch felt uncomfortable.</p>
+        <p class="font-body text-base leading-relaxed mb-4" style="color: #6B6B6B;">During labor, this ball was ESSENTIAL. I bounced, rocked, and swayed through contractions – it helped me stay mobile and manage pain naturally. My doula said movement on the ball can help baby get into optimal birthing position, and I genuinely believe it helped my labor progress. After baby arrived, this ball became our secret weapon for soothing! Bouncing baby on the ball calms crying and helps with gas. My partner and I take turns bouncing our little one to sleep – it works like magic!</p>
+        <p class="font-body text-base leading-relaxed" style="color: #6B6B6B;">The anti-burst technology gives me peace of mind – it's thick, durable, and can hold up to 2000 lbs. The slip-resistant texture means it stays put even when you're moving around on it. The quick pump makes inflation super easy. I got the 65cm size (I'm 5'7") and it's perfect. Now postpartum, I'm using it for core exercises to get my strength back. This ball has been worth every penny – an essential for pregnancy, birth, and baby care!</p>
+       </div><a href="https://amzn.to/4pK7F4h" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Buy on Amazon 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- Birthday Picks Page -->
+   <section id="page-birthday" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Birthday Picks</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Perfect birthday gifts and party essentials. Tested and approved for celebrating!</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Birthday Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71oCUteemmL._AC_SL1500_.jpg" alt="Birthday Gift Set" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Featured Birthday Gift</h2>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">Perfect for birthday celebrations! Check out my full collection of birthday gift ideas and party essentials on Amazon.</p><a href="https://amzn.to/4pV5KKu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop Birthday Picks 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- Valentine Picks Page -->
+   <section id="page-valentine" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Valentine Picks</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Romantic gifts and thoughtful picks for Valentine's Day.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Valentine Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/61a8Y+4NtgL._AC_SL1001_.jpg" alt="Valentine Gift Set" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Featured Valentine Gift</h2>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">Show your love with thoughtful gifts! Explore my full Valentine's Day collection on Amazon for more romantic ideas.</p><a href="https://amzn.to/4bK6WNc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop Valentine Picks 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- Electronics Page -->
+   <section id="page-electronics" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Electronics</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Tech gadgets and electronics that actually work. No gimmicks, just honest reviews.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-10"><!-- Electronics Product 1 -->
+      <article class="border-b pb-10" style="border-color: #E8E4DE;">
+       <div class="aspect-[4/3] mb-6 overflow-hidden" style="background-color: #FFFFFF;"><img src="https://m.media-amazon.com/images/I/71iT36L2WYL._AC_SL1500_.jpg" alt="Featured Electronics" loading="lazy" class="w-full h-full object-contain p-6" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+       </div>
+       <h2 class="font-heading text-xl md:text-2xl font-semibold mb-3" style="color: #2C2C2C;">Featured Tech Product</h2>
+       <p class="font-body text-sm leading-relaxed mb-5" style="color: #6B6B6B;">Quality electronics that deliver on their promises. Browse my complete electronics collection on Amazon for more tech recommendations.</p><a href="https://amzn.to/4qByrgG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop Electronics 
+        <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg></a>
+      </article>
+     </div>
+    </div>
+   </section><!-- Home Decor Page -->
+   <section id="page-home-decor" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Blog</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Home Decor</h1>
+      <p class="font-body text-base max-w-2xl mx-auto" style="color: #6B6B6B;">Stylish and affordable home decor to transform your space.</p>
+     </div>
+     <div class="text-center py-20">
+      <p class="font-body text-base mb-6" style="color: #6B6B6B;">Coming soon! Discover my home decor finds on Amazon.</p><a href="https://amzn.to/4pR2r76" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Shop Home Decor on Amazon 
+       <svg class="w-4 h-4" fill="none" stroke="#FFFFFF" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+       </svg></a>
+     </div>
+    </div>
+   </section><!-- Pinterest Pin Preview -->
+   <section id="page-pinterest" class="page-section hidden">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+     <div class="text-center mb-8">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Preview</p>
+      <h1 class="font-heading text-3xl font-semibold mb-4" style="color: #2C2C2C;">Pinterest Pin Design</h1>
+     </div>
+     <div class="flex justify-center">
+      <div class="w-full max-w-sm" style="aspect-ratio: 2/3; background: linear-gradient(180deg, #EDE9E3 0%, #FAF8F5 100%);">
+       <div class="h-full flex flex-col items-center justify-between p-8 text-center"><!-- Top Branding -->
+        <div>
+         <p class="font-body text-xs uppercase tracking-widest mb-1" style="color: #9B9B9B;">Smart Finds with Milly</p>
+        </div><!-- Product Image -->
+        <div class="flex-1 flex items-center justify-center">
+         <div class="w-full max-w-xs"><img src="https://m.media-amazon.com/images/I/71vvYDGCFDL._AC_SL1200_.jpg" alt="Amazon Storage Bins" loading="lazy" class="w-full h-auto object-contain" onerror="this.style.display='none';">
+         </div>
+        </div><!-- Main Text -->
+        <div class="space-y-4">
+         <h2 id="pin-title" class="font-heading text-2xl md:text-3xl font-semibold leading-tight" style="color: #2C2C2C;">Best Amazon Storage Bins in Canada</h2>
+         <div class="w-16 h-0.5 mx-auto" style="background-color: #2C2C2C;"></div>
+         <p class="font-body text-sm uppercase tracking-wider" style="color: #6B6B6B;">Honest Reviews • Tested Products</p>
+        </div><!-- Bottom CTA -->
+        <div class="pt-6">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="text-center mt-8"><button onclick="navigateTo('home')" class="font-body text-sm underline transition-opacity hover:opacity-70" style="color: #5C5C5C;"> ← Back to Home </button>
+     </div>
+    </div>
+   </section><!-- About/Contact Page -->
+   <section id="page-about" class="page-section hidden">
+    <div class="max-w-3xl mx-auto px-6 py-12">
+     <div class="text-center mb-12">
+      <p class="font-body text-xs uppercase tracking-widest mb-3" style="color: #9B9B9B;">Get in Touch</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold mb-4" style="color: #2C2C2C;">Product Review Request</h1>
+      <p class="font-body text-base max-w-2xl mx-auto mb-4" style="color: #6B6B6B;">Have a product you'd like me to review? I'm always looking for new finds to test and share with my community!</p>
+      <p class="font-body text-sm" style="color: #9B9B9B;">Fill out the form below and I'll consider it for an upcoming review.</p>
+     </div><!-- Contact Form -->
+     <div class="p-8" style="background-color: #F5F2ED;">
+      <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+       <div><label for="contact-name" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Your Name *</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" placeholder="Enter your name">
+       </div>
+       <div><label for="contact-email" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Your Email *</label> <input type="email" id="contact-email" required class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" placeholder="your.email@example.com">
+       </div>
+       <div><label for="product-name" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Product Name *</label> <input type="text" id="product-name" required class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" placeholder="What product should I review?">
+       </div>
+       <div><label for="product-link" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Product Link</label> <input type="url" id="product-link" class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" placeholder="https://amazon.ca/...">
+       </div>
+       <div><label for="product-category" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Category *</label> <select id="product-category" required class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;"> <option value="">Select a category</option> <option value="amazon">Amazon Picks</option> <option value="home">Home Finds</option> <option value="shein">SHEIN Picks</option> <option value="baby">Baby &amp; Mom</option> <option value="other">Other</option> </select>
+       </div>
+       <div><label for="message" class="block font-body text-sm font-medium mb-2" style="color: #2C2C2C;">Why should I review this? *</label> <textarea id="message" required rows="5" class="w-full px-4 py-3 font-body text-sm border focus:outline-none focus:ring-2 resize-none" style="border-color: #D4D0CA; background-color: #FFFFFF; color: #2C2C2C;" placeholder="Tell me what makes this product interesting..."></textarea>
+       </div><button type="submit" id="submit-btn" class="w-full px-6 py-4 font-body text-sm font-medium tracking-wide uppercase transition-opacity hover:opacity-90" style="background-color: #4A7C59; color: #FFFFFF;"> Submit Review Request </button>
+       <div id="form-message" class="hidden p-4 text-center font-body text-sm" style="background-color: #EDE9E3; color: #2C2C2C;"></div>
+      </form>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="border-t py-12" style="border-color: #E8E4DE; background-color: #F5F2ED;">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+       <p class="font-heading text-lg font-semibold mb-1" style="color: #2C2C2C;">Smart Finds with Milly</p>
+       <p class="font-body text-sm" style="color: #9B9B9B;">Honest reviews for smart Canadian shoppers</p>
+      </div>
+      <div class="flex items-center gap-6"><a href="#" class="font-body text-sm transition-opacity hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('pinterest'); return false;">Pinterest Pin Preview</a> <a href="#" class="font-body text-sm transition-opacity hover:opacity-70" style="color: #5C5C5C;" onclick="navigateTo('about'); return false;">Contact</a>
+      </div>
+     </div>
+     <div class="mt-8 pt-8 border-t text-center" style="border-color: #E8E4DE;">
+      <p class="font-body text-xs" style="color: #9B9B9B;">© 2024 Smart Finds with Milly. All rights reserved.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: "Smart Finds with Milly — Honest Reviews You Can Trust.",
+      hero_tagline: "I buy it. I test it. I tell you the truth.",
+      about_text: "Hi, I'm Milly. I share honest, practical reviews of affordable products in Canada so you can shop smarter and avoid wasting money.",
+      pin_title: "Best Amazon Storage Bins in Canada",
+      background_color: "#FAF8F5",
+      surface_color: "#EDE9E3",
+      text_color: "#2C2C2C",
+      secondary_text_color: "#6B6B6B",
+      accent_color: "#2C2C2C"
+    };
+
+    let config = { ...defaultConfig };
+    let currentPage = 'home';
+
+    function navigateTo(page) {
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      const targetPage = document.getElementById('page-' + page);
+      if (targetPage) {
+        targetPage.classList.remove('hidden');
+        currentPage = page;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const message = document.getElementById('newsletter-message');
+      message.textContent = "Thanks for subscribing! Check your inbox soon.";
+      message.classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => {
+        message.classList.add('hidden');
+      }, 5000);
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submit-btn');
+      const formMessage = document.getElementById('form-message');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.style.opacity = '0.6';
+      
+      const formData = new FormData(e.target);
+      const data = {
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email').value,
+        productName: document.getElementById('product-name').value,
+        productLink: document.getElementById('product-link').value,
+        category: document.getElementById('product-category').value,
+        message: document.getElementById('message').value
+      };
+      
+      const emailBody = `
+New Product Review Request
+
+From: ${data.name}
+Email: ${data.email}
+
+Product Name: ${data.productName}
+Product Link: ${data.productLink || 'Not provided'}
+Category: ${data.category}
+
+Message:
+${data.message}
+      `;
+      
+      const mailtoLink = `mailto:contact.elevarecreative@gmail.com?subject=Product Review Request: ${encodeURIComponent(data.productName)}&body=${encodeURIComponent(emailBody)}`;
+      window.open(mailtoLink, '_blank');
+      
+      setTimeout(() => {
+        formMessage.textContent = "Your email client should open with the review request. Please send the email to complete your submission.";
+        formMessage.classList.remove('hidden');
+        
+        document.getElementById('contact-form').reset();
+        
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review Request';
+        submitBtn.style.opacity = '1';
+        
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 10000);
+      }, 500);
+    }
+
+    async function onConfigChange(newConfig) {
+      config = { ...config, ...newConfig };
+      
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) {
+        heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+      }
+      
+      const heroTagline = document.getElementById('hero-tagline');
+      if (heroTagline) {
+        heroTagline.textContent = config.hero_tagline || defaultConfig.hero_tagline;
+      }
+      
+      const aboutText = document.getElementById('about-text');
+      if (aboutText) {
+        aboutText.textContent = config.about_text || defaultConfig.about_text;
+      }
+      
+      const pinTitle = document.getElementById('pin-title');
+      if (pinTitle) {
+        pinTitle.textContent = config.pin_title || defaultConfig.pin_title;
+      }
+
+      const wrapper = document.getElementById('app-wrapper');
+      if (wrapper) {
+        wrapper.style.backgroundColor = config.background_color || defaultConfig.background_color;
+      }
+
+      document.querySelectorAll('[style*="background-color: #EDE9E3"]').forEach(el => {
+        el.style.backgroundColor = config.surface_color || defaultConfig.surface_color;
+      });
+
+      document.querySelectorAll('[style*="color: #2C2C2C"]').forEach(el => {
+        el.style.color = config.text_color || defaultConfig.text_color;
+      });
+
+      document.querySelectorAll('[style*="color: #6B6B6B"]').forEach(el => {
+        el.style.color = config.secondary_text_color || defaultConfig.secondary_text_color;
+      });
+
+      document.querySelectorAll('[style*="background-color: #2C2C2C"]').forEach(el => {
+        el.style.backgroundColor = config.accent_color || defaultConfig.accent_color;
+      });
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_text_color || defaultConfig.secondary_text_color,
+            set: (value) => {
+              cfg.secondary_text_color = value;
+              window.elementSdk.setConfig({ secondary_text_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ["hero_title", cfg.hero_title || defaultConfig.hero_title],
+        ["hero_tagline", cfg.hero_tagline || defaultConfig.hero_tagline],
+        ["about_text", cfg.about_text || defaultConfig.about_text],
+        ["pin_title", cfg.pin_title || defaultConfig.pin_title]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1a6c95b52c39ff',t:'MTc2OTAzNjM4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
